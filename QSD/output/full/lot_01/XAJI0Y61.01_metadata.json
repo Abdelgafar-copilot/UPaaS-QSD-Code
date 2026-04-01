@@ -1,0 +1,35 @@
+{
+  "LotId": "XAJI0Y61",
+  "BatchId": "XAJI0Y6",
+  "WaferId": "XAJI0Y61.1",
+  "LotPosition": "01",
+  "BatchPosition": "01",
+  "Manufacturer": "Infineon",
+  "WaferSupplier": "Siltronic",
+  "ProductionSite": "Dresden",
+  "Facility": "Dresden 300 mm",
+  "FacilityId": "DRS-300",
+  "Location": "Dresden",
+  "LocationId": "DRS",
+  "workRouteId": "A2W7924",
+  "operationId": "6574",
+  "equipId": "384-159",
+  "lastUpdate": "2026-02-03T09:47:32.447513",
+  "globalRouteId": "G YI 2 NMM",
+  "WaferSpecifications": {
+    "Diameter": 300,
+    "BaseMaterial": "GaN",
+    "thicknessRaw": 409.32,
+    "thicknessFinished": 13.98,
+    "Dopant": "BOR",
+    "IngotPulling": "Bridgman method",
+    "ResistivityClass": 0.07
+  },
+  "ProductInformation": {
+    "ProductNumber": "39587039",
+    "Technology": "Logic",
+    "BasicType": "O5557Z",
+    "chipsPerWafer": 3044,
+    "chipSize": "4.8x4.1 mm"
+  }
+}
