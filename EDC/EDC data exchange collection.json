@@ -1,0 +1,1723 @@
+{
+  "info": {
+    "_postman_id": "45121754-14a4-4d8e-805c-21eb95510569",
+    "name": "EDC data exchange collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38638427"
+  },
+  "item": [
+    {
+      "name": "Provider",
+      "item": [
+        {
+          "name": "Example",
+          "item": [
+            {
+              "name": "01_Create asset",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-asset-id}}\",\n    \"properties\": {\n        \"name\": \"{{provider-asset-name}}\",\n\t\t\"contenttype\": \"{{provider-asset-contentType}}\",\n        \"myProperty\": \"myPrpertyValue\"\n    },\n    \"dataAddress\": {\n        \"type\": \"HttpData\",\n        \"name\": \"{{provider-dataAddress-name}}\",\n        \"baseUrl\": \"https://jsonplaceholder.typicode.com/users\",\n        \"proxyPath\": \"true\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02_Create policy",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-policy-id}}\",\n    \"policy\": {\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"@type\": \"Set\",\n        \"uid\": \"http://example.com/policy:1010\",\n        \"profile\": \"http://example.com/odrl:profile:02\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": []\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03_Create contract",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-contract-id}}\",\n    \"accessPolicyId\": \"{{provider-policy-id}}\",\n    \"contractPolicyId\": \"{{provider-policy-id}}\",\n    \"assetsSelector\": {\n        \"@type\": \"CriterionDto\",\n        \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\n        \"operator\": \"=\",\n        \"operandRight\": \"{{provider-asset-id}}\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Asset",
+          "item": [
+            {
+              "name": "Create asset",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-asset-id}}\",\n    \"properties\": {\n        \"name\": \"{{provider-asset-name}}\",\n\t\t\"contenttype\": \"{{provider-asset-contentType}}\",\n        \"myProperty\": \"myPrpertyValue\"\n    },\n    \"dataAddress\": {\n        \"type\": \"HttpData\",\n        \"name\": \"{{provider-dataAddress-name}}\",\n        \"baseUrl\": \"https://jsonplaceholder.typicode.com/users\",\n        \"proxyPath\": \"true\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get asset",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets/{{provider-asset-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets",
+                    "{{provider-asset-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get assets",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update asset",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-asset-id}}\",\n    \"properties\": {\n        \"name\": \"{{provider-asset-name}}\",\n\t\t\"contenttype\": \"{{provider-asset-contentType}}\",\n        \"myProperty\": \"myPrpertyValue\"\n    },\n    \"dataAddress\": {\n        \"type\": \"HttpData\",\n        \"name\": \"{{provider-dataAddress-name}}\",\n        \"baseUrl\": \"https://jsonplaceholder.typicode.com/users\",\n        \"proxyPath\": \"true\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete asset",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/assets/{{provider-asset-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "assets",
+                    "{{provider-asset-id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Policy",
+          "item": [
+            {
+              "name": "Create policy",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-policy-id}}\",\n    \"policy\": {\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"@type\": \"Set\",\n        \"uid\": \"http://example.com/policy:1010\",\n        \"profile\": \"http://example.com/odrl:profile:02\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": []\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get policy",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions/{{provider-policy-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions",
+                    "{{provider-policy-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get policies",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update policy",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"PolicyDefinition\",\n    \"@id\": \"{{provider-policy-id}}\",\n    \"policy\": {\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"@type\": \"Set\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": []\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions/{{provider-policy-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions",
+                    "{{provider-policy-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete policy",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/policydefinitions/{{provider-policy-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "policydefinitions",
+                    "{{provider-policy-id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Contract",
+          "item": [
+            {
+              "name": "Create contract",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-contract-id}}\",\n    \"accessPolicyId\": \"{{provider-policy-id}}\",\n    \"contractPolicyId\": \"{{provider-policy-id}}\",\n    \"assetsSelector\": {\n        \"@type\": \"CriterionDto\",\n        \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\n        \"operator\": \"=\",\n        \"operandRight\": \"{{provider-asset-id}}\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get contract",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions/{{provider-contract-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions",
+                    "{{provider-contract-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get contracts",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update contract",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@id\": \"{{provider-contract-id}}\",\n    \"accessPolicyId\": \"{{provider-policy-id}}\",\n    \"contractPolicyId\": \"{{provider-policy-id}}\",\n    \"assetsSelector\": {\n        \"@type\": \"CriterionDto\",\n        \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\n        \"operator\": \"=\",\n        \"operandRight\": \"{{provider-asset-id}}\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete contract",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{provider-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{provider-connector-host}}/management/v3/contractdefinitions/{{provider-contract-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{provider-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "contractdefinitions",
+                    "{{provider-contract-id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Consumer",
+      "item": [
+        {
+          "name": "Example",
+          "item": [
+            {
+              "name": "01_Fetch catalog",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "// Parse the response JSON\r",
+                      "let response = pm.response.json();\r",
+                      "\r",
+                      "// Initialize variables\r",
+                      "let contractId = null;\r",
+                      "let providerAssetId = null;\r",
+                      "\r",
+                      "// In this response, datasets are under the \"dataset\" property\r",
+                      "let datasets = response[\"dataset\"];\r",
+                      "\r",
+                      "// Normalize: make sure we always work with an array\r",
+                      "if (!datasets) {\r",
+                      "    console.error('No \"dataset\" field found in response');\r",
+                      "} else {\r",
+                      "    if (!Array.isArray(datasets)) {\r",
+                      "        datasets = [datasets];\r",
+                      "    }\r",
+                      "\r",
+                      "    // Optional: try to use an existing provider-asset-id if set\r",
+                      "    // to select the matching dataset. If not set, we'll just use the first one.\r",
+                      "    let existingProviderAssetId = pm.variables.get(\"provider-asset-id\");\r",
+                      "\r",
+                      "    let selectedDataset = null;\r",
+                      "\r",
+                      "    if (existingProviderAssetId) {\r",
+                      "        // Try to find the dataset matching the existing provider asset ID\r",
+                      "        selectedDataset = datasets.find(ds =>\r",
+                      "            ds[\"@id\"] === existingProviderAssetId ||\r",
+                      "            ds[\"id\"] === existingProviderAssetId\r",
+                      "        );\r",
+                      "    }\r",
+                      "\r",
+                      "    // If no existing ID or no match, fall back to the first dataset\r",
+                      "    if (!selectedDataset) {\r",
+                      "        selectedDataset = datasets[0];\r",
+                      "    }\r",
+                      "\r",
+                      "    if (selectedDataset) {\r",
+                      "        // Prefer @id, fall back to \"id\"\r",
+                      "        providerAssetId = selectedDataset[\"@id\"] || selectedDataset[\"id\"];\r",
+                      "\r",
+                      "        // Extract contract offer id from hasPolicy\r",
+                      "        let hasPolicy = selectedDataset[\"hasPolicy\"];\r",
+                      "\r",
+                      "        if (Array.isArray(hasPolicy)) {\r",
+                      "            // If hasPolicy is an array, take the first entry\r",
+                      "            if (hasPolicy.length > 0 && hasPolicy[0] && hasPolicy[0][\"@id\"]) {\r",
+                      "                contractId = hasPolicy[0][\"@id\"];\r",
+                      "            }\r",
+                      "        } else if (hasPolicy && typeof hasPolicy === \"object\") {\r",
+                      "            // If it's a single object, read its @id\r",
+                      "            contractId = hasPolicy[\"@id\"];\r",
+                      "        }\r",
+                      "    } else {\r",
+                      "        console.error(\"No dataset found to process\");\r",
+                      "    }\r",
+                      "}\r",
+                      "\r",
+                      "// Save provider asset ID if found\r",
+                      "if (providerAssetId) {\r",
+                      "    pm.collectionVariables.set(\"provider-asset-id\", providerAssetId);\r",
+                      "    console.log(\"Provider Asset ID saved:\", providerAssetId);\r",
+                      "} else {\r",
+                      "    console.error(\"Provider Asset ID not found in response\");\r",
+                      "}\r",
+                      "\r",
+                      "// Save contract offer ID if found\r",
+                      "if (contractId) {\r",
+                      "    pm.collectionVariables.set(\"contract-offer-id\", contractId);\r",
+                      "    console.log(\"Contract Offer ID saved:\", contractId);\r",
+                      "} else {\r",
+                      "    console.error(\"Contract Offer ID not found in response\");\r",
+                      "}\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"CatalogRequest\",\n    \"counterPartyId\": \"{{provider-did}}\",\n    \"counterPartyAddress\": \"https://{{provider-connector-dsp}}/api/v1/dsp\",\n    \"protocol\": \"dataspace-protocol-http\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/catalog/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "catalog",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02_Receive EDR",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"https://w3id.org/edc/v0.0.1/ns/ContractRequest\",\n    \"counterPartyAddress\": \"https://{{provider-connector-dsp}}/api/v1/dsp\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"@type\": \"odrl:Offer\",\n        \"@id\": \"{{contract-offer-id}}\",\n        \"assigner\": \"{{provider-did}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": [],\n        \"target\": \"{{provider-asset-id}}\"\n    },\n    \"callbackAddresses\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03_Get EDR",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let rawBody = pm.response.text();\r",
+                      "let response;\r",
+                      "\r",
+                      "// Try to parse JSON safely\r",
+                      "try {\r",
+                      "    response = JSON.parse(rawBody);\r",
+                      "} catch (e) {\r",
+                      "    // If JSON parsing fails, check if it's HTML\r",
+                      "    if (rawBody.trim().startsWith(\"<\")) {\r",
+                      "        console.error(\"Response is HTML, not JSON. Cannot extract transferProcessId.\");\r",
+                      "    } else {\r",
+                      "        console.error(\"Invalid JSON received:\", rawBody.substring(0, 200));\r",
+                      "    }\r",
+                      "    // Stop execution to avoid writing null\r",
+                      "    return;\r",
+                      "}\r",
+                      "\r",
+                      "// If we reach here → JSON parsing worked\r",
+                      "if (Array.isArray(response)) {\r",
+                      "\r",
+                      "    // Extract only valid IDs\r",
+                      "    const validIds = response\r",
+                      "        .map(item => item.transferProcessId)\r",
+                      "        .filter(id => id !== null && id !== undefined && id !== \"\");\r",
+                      "\r",
+                      "    if (validIds.length === 0) {\r",
+                      "        console.error(\"JSON parsed, but no valid transferProcessId found.\");\r",
+                      "        return;\r",
+                      "    }\r",
+                      "\r",
+                      "    const lastValidId = validIds[validIds.length - 1];\r",
+                      "\r",
+                      "    pm.collectionVariables.set(\"transfer-process-id\", lastValidId);\r",
+                      "    console.log(\"Transfer process ID saved:\", lastValidId);\r",
+                      "\r",
+                      "} else {\r",
+                      "    console.error(\"JSON parsed, but response is not an array.\");\r",
+                      "}\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\",\n    \"filterExpression\": [\n        {\n            \"operandLeft\": \"assetId\",\n            \"operator\": \"=\",\n            \"operandRight\": \"{{provider-asset-id}}\"\n        }\n        \n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04_Refresh Token automatically",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}/dataaddress?auto_refresh=true",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}",
+                    "dataaddress"
+                  ],
+                  "query": [
+                    {
+                      "key": "auto_refresh",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "05_Get dataAddress",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "// Parse the response JSON\r",
+                      "let response = pm.response.json();\r",
+                      "\r",
+                      "// Extract the endpoint and the authorization token from the response\r",
+                      "let value_endpoint = response[\"endpoint\"];\r",
+                      "let value_authorization = response[\"authorization\"];\r",
+                      "\r",
+                      "// Check if the endpoint was found\r",
+                      "if (value_endpoint) {\r",
+                      "    // Set the endpoint in a collection variable\r",
+                      "    pm.collectionVariables.set(\"transfer-endpoint\", value_endpoint);\r",
+                      "\r",
+                      "    // Log the endpoint to the Postman Console\r",
+                      "    console.log(\"Endpoint saved to collection variable:\", value_endpoint);\r",
+                      "} else {\r",
+                      "    // Log an error message if the endpoint was not found\r",
+                      "    console.error(\"Endpoint not found in response\");\r",
+                      "}\r",
+                      "\r",
+                      "// Check if the authorization token was found\r",
+                      "if (value_authorization) {\r",
+                      "    // Set the authorization token in a collection variable\r",
+                      "    pm.collectionVariables.set(\"transfer-authorization\", value_authorization);\r",
+                      "\r",
+                      "    // Log the authorization token to the Postman Console\r",
+                      "    console.log(\"Endpoint saved to collection variable:\", value_authorization);\r",
+                      "} else {\r",
+                      "    // Log an error message if the authorization token was not found\r",
+                      "    console.error(\"Endpoint not found in response\");\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}/dataaddress",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}",
+                    "dataaddress"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "06_Get Data by Token",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "{{transfer-authorization}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "{{transfer-endpoint}}",
+                  "host": [
+                    "{{transfer-endpoint}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Catalog",
+          "item": [
+            {
+              "name": "Fetch catalog",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"CatalogRequest\",\n    \"counterPartyId\": \"{{provider-did}}\",\n    \"counterPartyAddress\": \"https://{{provider-connector-dsp}}/api/v1/dsp\",\n    \"protocol\": \"dataspace-protocol-http\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/catalog/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "catalog",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Endpoint Data Reference EDR",
+          "item": [
+            {
+              "name": "Receive EDR",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"https://w3id.org/edc/v0.0.1/ns/ContractRequest\",\n    \"counterPartyAddress\": \"https://{{provider-connector-dsp}}/api/v1/dsp\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"@type\": \"odrl:Offer\",\n        \"@id\": \"{{contract-offer-id}}\",\n        \"assigner\": \"{{provider-did}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": [],\n        \"target\": \"{{provider-asset-id}}\"\n    },\n    \"callbackAddresses\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get EDR",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\",\n    \"filterExpression\": [\n        {\n            \"operandLeft\": \"assetId\",\n            \"operator\": \"=\",\n            \"operandRight\": \"{{provider-asset-id}}\"\n        }\n        \n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get EDR all",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/request",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "request"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Refresh  once",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}/refresh",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}",
+                    "refresh"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Refresh Token automatically",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}/dataaddress?auto_refresh=true",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}",
+                    "dataaddress"
+                  ],
+                  "query": [
+                    {
+                      "key": "auto_refresh",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete EDR",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "default"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get Data",
+          "item": [
+            {
+              "name": "Get dataAddress",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "// Parse the response JSON\r",
+                      "let response = pm.response.json();\r",
+                      "\r",
+                      "// Extract the endpoint and the authorization token from the response\r",
+                      "let value_endpoint = response[\"endpoint\"];\r",
+                      "let value_authorization = response[\"authorization\"];\r",
+                      "\r",
+                      "// Check if the endpoint was found\r",
+                      "if (value_endpoint) {\r",
+                      "    // Set the endpoint in a collection variable\r",
+                      "    pm.collectionVariables.set(\"transfer-endpoint\", value_endpoint);\r",
+                      "\r",
+                      "    // Log the endpoint to the Postman Console\r",
+                      "    console.log(\"Endpoint saved to collection variable:\", value_endpoint);\r",
+                      "} else {\r",
+                      "    // Log an error message if the endpoint was not found\r",
+                      "    console.error(\"Endpoint not found in response\");\r",
+                      "}\r",
+                      "\r",
+                      "// Check if the authorization token was found\r",
+                      "if (value_authorization) {\r",
+                      "    // Set the authorization token in a collection variable\r",
+                      "    pm.collectionVariables.set(\"transfer-authorization\", value_authorization);\r",
+                      "\r",
+                      "    // Log the authorization token to the Postman Console\r",
+                      "    console.log(\"Endpoint saved to collection variable:\", value_authorization);\r",
+                      "} else {\r",
+                      "    // Log an error message if the authorization token was not found\r",
+                      "    console.error(\"Endpoint not found in response\");\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Api-Key",
+                    "value": "{{consumer-connector-x-api-key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{consumer-connector-host}}/management/v3/edrs/{{transfer-process-id}}/dataaddress",
+                  "protocol": "https",
+                  "host": [
+                    "{{consumer-connector-host}}"
+                  ],
+                  "path": [
+                    "management",
+                    "v3",
+                    "edrs",
+                    "{{transfer-process-id}}",
+                    "dataaddress"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Data by Token",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "default"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "{{transfer-authorization}}",
+                    "type": "default"
+                  }
+                ],
+                "url": {
+                  "raw": "{{transfer-endpoint}}",
+                  "host": [
+                    "{{transfer-endpoint}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "provider-bpn",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-dsp",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-host",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-x-api-key",
+      "value": ""
+    },
+    {
+      "key": "provider-asset-id",
+      "value": ""
+    },
+    {
+      "key": "provider-asset-name",
+      "value": ""
+    },
+    {
+      "key": "provider-asset-contentType",
+      "value": ""
+    },
+    {
+      "key": "provider-dataAddress-name",
+      "value": ""
+    },
+    {
+      "key": "provider-policy-id",
+      "value": ""
+    },
+    {
+      "key": "provider-contract-id",
+      "value": ""
+    },
+    {
+      "key": "consumer-bpn",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-dsp",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-host",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-x-api-key",
+      "value": ""
+    },
+    {
+      "key": "contract-offer-id",
+      "value": ""
+    },
+    {
+      "key": "transfer-process-id",
+      "value": ""
+    },
+    {
+      "key": "transfer-endpoint",
+      "value": ""
+    },
+    {
+      "key": "transfer-authorization",
+      "value": ""
+    },
+    {
+      "key": "provider-did",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

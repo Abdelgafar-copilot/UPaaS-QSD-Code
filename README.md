@@ -18,4 +18,4 @@ Contains the codebase used to generate qualified synthetic semiconductor data.
 
 Contains artifacts related to data exchange logs produced through the Eclipse Dataspace Connector workflow.
 
-- Data exchange logs: [EDC/data-offer-results.md](EDC/data-offer-results.md)
+- Documentation and usage guide: [EDC/README.md](EDC/README.md)
