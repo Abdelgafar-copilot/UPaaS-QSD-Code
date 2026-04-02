@@ -78,8 +78,8 @@
                     "@id": "0794daa4-0e53-4217-b4f9-b341ce217863",
                     "@type": "dcat:DataService",
                     "dcat:endpointDescription": "dspace:connector",
-                    "dcat:endpointUrl": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
-                    "dcat:endpointURL": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
+                    "dcat:endpointUrl": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
+                    "dcat:endpointURL": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
                 }
             },
             {
@@ -91,8 +91,8 @@
                     "@id": "0794daa4-0e53-4217-b4f9-b341ce217863",
                     "@type": "dcat:DataService",
                     "dcat:endpointDescription": "dspace:connector",
-                    "dcat:endpointUrl": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
-                    "dcat:endpointURL": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
+                    "dcat:endpointUrl": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
+                    "dcat:endpointURL": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
                 }
             },
             {
@@ -104,8 +104,8 @@
                     "@id": "0794daa4-0e53-4217-b4f9-b341ce217863",
                     "@type": "dcat:DataService",
                     "dcat:endpointDescription": "dspace:connector",
-                    "dcat:endpointUrl": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
-                    "dcat:endpointURL": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
+                    "dcat:endpointUrl": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
+                    "dcat:endpointURL": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
                 }
             },
             {
@@ -117,8 +117,8 @@
                     "@id": "0794daa4-0e53-4217-b4f9-b341ce217863",
                     "@type": "dcat:DataService",
                     "dcat:endpointDescription": "dspace:connector",
-                    "dcat:endpointUrl": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
-                    "dcat:endpointURL": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
+                    "dcat:endpointUrl": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
+                    "dcat:endpointURL": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
                 }
             }
         ],
@@ -133,8 +133,8 @@
         "@id": "0794daa4-0e53-4217-b4f9-b341ce217863",
         "@type": "dcat:DataService",
         "dcat:endpointDescription": "dspace:connector",
-        "dcat:endpointUrl": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
-        "dcat:endpointURL": "https://edc-2-dsp.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
+        "dcat:endpointUrl": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp",
+        "dcat:endpointURL": "https://edc-2-dsp.opaix.semix-int3.kubernetes.htw-dresden.de/api/v1/dsp"
     },
     "dspace:participantId": "BPNL000000000RMP",
     "@context": {
@@ -201,14 +201,14 @@
     "@type": "DataAddress",
     "flowType": "PULL",
     "endpointType": "https://w3id.org/idsa/v4.1/HTTP",
-    "tx-auth:refreshEndpoint": "https://edc-2-mgt.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/public/token",
+    "tx-auth:refreshEndpoint": "https://edc-2-mgt.opaix.semix-int3.kubernetes.htw-dresden.de/api/public/token",
     "transferTypeDestination": "HttpData",
     "tx-auth:audience": "did:web:ssi-dim-wallet-stub.semix-int3.kubernetes.htw-dresden.de:BPNL000000000QNE",
     "type": "https://w3id.org/idsa/v4.1/HTTP",
-    "endpoint": "https://edc-2-dataplane.infineon-ifx.semix-int3.kubernetes.htw-dresden.de/api/public",
-    "tx-auth:refreshToken": "eyJraWQiOiJwdWJsaWMta2V5IiwiYWxnIjoiRVMyNTYifQ.eyJleHAiOjE3NzQyNzQxMzEsImlhdCI6MTc3NDI3MzgzMSwianRpIjoiMDNlMDkwMTEtYjc0YS00MmY0LTkyNDEtODMzNDY5MTg0NDYyIn0.axiX8zeeAUHYMKfy7IjwJaBRjzUDAHfQy38nSJM11KaAlisy6k7N6GzfDvxRo2_YuZQhncL8J75PRW3m6HBGfQ",
+    "endpoint": "https://edc-2-dataplane.opaix.semix-int3.kubernetes.htw-dresden.de/api/public",
+    "tx-auth:refreshToken": "[REDACTED]",
     "tx-auth:expiresIn": "300",
-    "authorization": "eyJraWQiOiJwdWJsaWMta2V5IiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJCUE5MMDAwMDAwMDAwUk1QIiwiYXVkIjoiQlBOTDAwMDAwMDAwMFFORSIsInN1YiI6IkJQTkwwMDAwMDAwMDBSTVAiLCJleHAiOjE3NzQyNzQxMzIsImlhdCI6MTc3NDI3MzgzMiwianRpIjoiMzA4Y2NhNDktYWYyNS00MzcwLTg4NzctZjRhNTQwOTQzYWQzIn0.ufeiP9aDYCdeMAs9zTmlDELer0GMYRDBjZCKqJCI7j_zeyk7yL5J1dKvgkysEKbL60hxiVXHo4P6nx436yLd-A",
+    "authorization": "[REDACTED]",
     "tx-auth:refreshAudience": "did:web:ssi-dim-wallet-stub.semix-int3.kubernetes.htw-dresden.de:BPNL000000000QNE",
     "@context": {
         "tx": "https://w3id.org/tractusx/v0.0.1/ns/",
